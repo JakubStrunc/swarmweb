@@ -26,14 +26,14 @@ spl_autoload_register(function ($className){
     // zjistim, zda exituje soubor s danou tridou a dostupnou priponou
     foreach(FILE_EXTENSIONS as $ext) {
         if (file_exists($fileName . $ext)) {
-            echo $ext;
+            //echo $ext;
             $fileName .= $ext;
             // nasel jsem, koncim
             break;
         }
     }
 
-    echo $fileName;
+    //echo $fileName;
 
     // pripojim soubor s pozadovanou tridou
     //echo "Ze souboru: $fileName <br>";
