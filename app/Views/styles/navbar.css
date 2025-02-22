@@ -6,5 +6,53 @@
 }
 
 .custom-hover:hover {
-    color: yellow; /* Hover color */
+    .text-warning /* Hover color */
+}
+
+/* Initial transparent navbar */
+#mainNav {
+    background-color: transparent;
+    transition: background-color 0.3s ease; /* smooth transition */
+}
+
+/* Navbar when scrolled (black background) */
+.navbar-scrolled {
+    background-color: black !important;
+    color: white;
+}
+
+/* Adjust nav links color for black background */
+.navbar-scrolled .nav-link {
+    color: white !important;
+}
+
+/* Styling for the navbar brand */
+.navbar-scroll .navbar-brand,
+.navbar-scroll .nav-link,
+.navbar-scroll .fa-bars {
+    color: #fff;
+}
+
+/* Additional styling for scrolled navbar */
+.navbar-scrolled .navbar-brand,
+.navbar-scrolled .nav-link,
+.navbar-scrolled .fa-bars {
+    color: #4f4f4f;
+}
+
+.navbar-scrolled {
+    background-color: #fff;
+}
+
+/* Mobile-specific responsive adjustments */
+@media (max-width: 991px) {
+    .navbar-scroll {
+        background-color: #fff;
+    }
+}
+
+@media (max-width: 450px) {
+    #intro {
+        height: 950px !important;
+    }
 }

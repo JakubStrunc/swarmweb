@@ -30,7 +30,7 @@ class TemplateBasics implements IView{
         require_once($pageType);
 
         //// vypis pacicky
-        $this->getHTMLFooter();
+        //$this->getHTMLFooter();
     }
     /**
      *  Vrati vrsek stranky az po oblast, ve ktere se vypisuje obsah stranky.
@@ -47,6 +47,8 @@ class TemplateBasics implements IView{
 
             <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
                   rel="stylesheet" crossorigin="anonymous">
+
+            <link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" rel="stylesheet">
 
             <link rel="stylesheet" href="/app/Views/styles/navbar.css">
 
