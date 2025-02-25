@@ -17,8 +17,8 @@ $tmp = new TemplateBasics();
     <meta charset="utf-8">
     <title><?php echo $tplData['title'] ?></title>
 
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
-    <link rel="stylesheet" href="../../../swarmwebsite/app/Views/styles/navbar.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+          rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">    <link rel="stylesheet" href="../../../swarmwebsite/app/Views/styles/navbar.css">
     <link rel="stylesheet" href="../../../swarmwebsite/app/Views/styles/timeline.css">
     <link rel="stylesheet" href="../../../swarmwebsite/app/Views/styles/sponsors.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" rel="stylesheet">
@@ -27,27 +27,45 @@ $tmp = new TemplateBasics();
 
 <body id="page-top" data-bs-offset="54" style="background-color: black">
 
-<nav class="navbar navbar-expand-lg fixed-top" id="mainNav" style="height: 100px; background-color: transparent">
-    <div class="container">
-        <button data-bs-toggle="collapse" data-bs-target="#navbarResponsive" class="navbar-toggler navbar-toggler-right"
-                type="button" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-            <i class="fa fa-bars"></i>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarResponsive">
-            <img src="../../../swarmwebsite/app/images/logo.png" style="width: auto;height: 80px;" width="150" height="150" alt="">
-            <ul class="navbar-nav ms-auto text-uppercase">
-                <li class="nav-item"><a class="nav-link custom-hover" href="#about">About</a></li>
-                <li class="nav-item"><a class="nav-link custom-hover" href="#team">Team</a></li>
-                <li class="nav-item"><a class="nav-link custom-hover" href="media.html">Media</a></li>
-                <li class="nav-item"><a class="nav-link custom-hover" href="events.html">Events</a></li>
-                <li class="nav-item"><a class="nav-link custom-hover" href="#sponsor">sponsors</a></li>
-            </ul>
+<header>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg fixed-top navbar-scroll" id="mainNav">
+        <div class="container">
+            <button data-bs-toggle="collapse" data-bs-target="#navbarResponsive" class="navbar-toggler navbar-toggler-right" type="button" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                <i class="fa fa-bars"></i>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarResponsive">
+                <img src="../../../swarmwebsite/app/images/Logo.png" style="width: auto;height: 80px;" width="150" height="150" alt="">
+                <ul class="navbar-nav ms-auto text-uppercase">
+                    <li class="nav-item"><a class="nav-link custom-hover" href="#about">About</a></li>
+                    <li class="nav-item"><a class="nav-link custom-hover" href="#team">Team</a></li>
+                    <li class="nav-item"><a class="nav-link custom-hover" href="media.html">Media</a></li>
+                    <li class="nav-item"><a class="nav-link custom-hover" href="events.html">Events</a></li>
+                    <li class="nav-item"><a class="nav-link custom-hover" href="#sponsor">Sponsors</a></li>
+                </ul>
+            </div>
         </div>
-    </div>
-</nav>
-<img src="../../../swarmwebsite/app/images/teamphoto2.png" class="img-fluid" alt="Image">
+    </nav>
+    <!-- Navbar -->
 
+    <!-- Section: Design Block -->
+    <section>
+        <div id="intro" class="bg-image" style="background-image: url('../../../swarmwebsite/app/images/teamphoto2.png'); height: 100vh;">
+            <div class="mask" style="background-color: rgba(0, 0, 0, 0.2);">
+                <div class="container d-flex justify-content-center align-items-center h-100">
+                    <div class="row align-items-center">
+                        <div class="col-12">
+                            <!-- Removed the "Studio" text here -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Section: Design Block -->
+</header>
 
+<h1> working</h1>
 
 
 <section class="about m-lg-5">
@@ -247,7 +265,7 @@ $tmp = new TemplateBasics();
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
-    <script src="../JavaScript/navbar.js"></script>
+    <script src="../../../swarmwebsite/app/JavaScript/navbar.js"></script>
     <script>
         AOS.init({
             duration: 1000,  // Animation duration in milliseconds
