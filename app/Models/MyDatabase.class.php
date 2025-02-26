@@ -1,70 +1,105 @@
 <?php
 
 namespace web\Models;
-//require_once("../DB/about.json");
 
-class MyDatabase
-{
-    private $paragraphsFile = "app/DB/about.json";
-    private $eventsFile = "app/DB/events.json";
-    private $photosFile = "app/DB/photos.json";
+class MyDatabase {
 
-    // Save paragraphs
-    public function saveParagraphs($paragraph1, $paragraph2)
+    /** @var \PDO $pdo */
+    private $pdo;
+
+    private $mySession;
+
+    public function __construct(){
+        //$this->pdo = new \PDO("mysql:host=".DB_SERVER.";dbname=".DB_NAME, DB_USER, DB_PASS);
+        $this->pdo->exec("set names utf8");
+
+        //require_once("MySessions.class.php");
+        $this->mySession = new MySession();
+
+        // Automaticky vytvoří tabulky, pokud neexistují
+        $this->createTables();
+    }
+
+    private function executequery(string $dotaz){
+        $res = $this->pdo->query($dotaz);
+
+        if($res){
+            return $res;
+        }
+        else{
+            $error = $this->pdo->errorInfo();
+            echo $error[2];
+            return null;
+        }
+    }
+    public function selectFromTable(string $tableName, string $whereStatement = "", string $orderStatement = ""){
+        $q = "SELECT * FROM ".$tableName
+            .(($whereStatement == "") ? "" : " WHERE ".$whereStatement)
+            .(($orderStatement == "") ? "" : " ORDER BY ".$orderStatement);
+
+        $obj = $this->executequery($q);
+
+        if($obj == null) {
+            return [];
+        }
+        return $obj->fetchAll();
+
+    }
+
+    public function deleteFromTable(string $tableName, string $whereStatement)
     {
-        $data = [
-            "paragraph1" => $paragraph1,
-            "paragraph2" => $paragraph2
-        ];
-        file_put_contents($this->paragraphsFile, json_encode($data, JSON_PRETTY_PRINT));
+        $q = "DELETE FROM $tableName WHERE $whereStatement";
+        $obj = $this->executequery($q);
+        if($obj == null) {
+            return false;
+        }
         return true;
     }
 
-    // Save an event
-    public function saveEvent($name, $day, $month, $year, $description, $photoPath)
+    public function insertIntoTable(string $tableName, string $insertStatement, string $insertValues)
     {
-        $events = $this->getEvents();
-        $events[] = [
-            "name" => $name,
-            "day" => $day,
-            "month" => $month,
-            "year" => $year,
-            "description" => $description,
-            "photo" => $photoPath
-        ];
-        file_put_contents($this->eventsFile, json_encode($events, JSON_PRETTY_PRINT));
+        $q = "INSERT INTO $tableName($insertStatement) VALUES ($insertValues)";
+        $obj = $this->executequery($q);
+        if($obj == null) {
+            return false;
+        }
         return true;
     }
 
-    // Save a photo
-    public function savePhoto($photoPath)
+    public function updateInTable(string $tableName, string $updateStatement, string $whereStatement)
     {
-        $photos = $this->getPhotos();
-        $photos[] = ["path" => $photoPath];
-        file_put_contents($this->photosFile, json_encode($photos, JSON_PRETTY_PRINT));
+        $q = "Update $tableName SET $updateStatement WHERE $whereStatement";
+        $obj = $this->executequery($q);
+        if($obj == null) {
+            return false;
+        }
         return true;
     }
 
-    // Retrieve paragraphs
-    public function getParagraphs()
-    {
-        if (!file_exists($this->paragraphsFile)) return null;
-        return json_decode(file_get_contents($this->paragraphsFile), true);
+    public function getAllAbout() {
+        return $this->selectFromTable("ABOUT", "", "id DESC");
     }
 
-    // Retrieve all events
-    public function getEvents()
-    {
-        if (!file_exists($this->eventsFile)) return [];
-        return json_decode(file_get_contents($this->eventsFile), true);
+    public function updateAbout($id, $text, $photo) {
+        return $this->updateInTable("ABOUT", "text = '$text', photo = '$photo'", "id = $id");
     }
 
-    // Retrieve all photos
-    public function getPhotos()
-    {
-        if (!file_exists($this->photosFile)) return [];
-        return json_decode(file_get_contents($this->photosFile), true);
+     public function saveEvent($name, $date, $description, $photo) {
+        return $this->insertIntoTable("EVENTS", "name, date, description, photo", "'$name', '$date', '$description', '$photo'");
     }
+
+    public function getAllEvents() {
+        return $this->selectFromTable("EVENTS", "", "date DESC");
+    }
+
+    public function deleteEvent($id) {
+        return $this->deleteFromTable("EVENTS", "id = $id");
+    }
+
+
+
+
+
 }
 
 ?>

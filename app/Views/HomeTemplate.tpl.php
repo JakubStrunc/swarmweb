@@ -29,7 +29,7 @@ $tmp = new TemplateBasics();
 
 <header>
     <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg fixed-top navbar-scroll" id="mainNav">
+    <nav class="navbar navbar-expand-lg fixed-top navbar-scroll" id="mainNav" style="transition: background-color 1s ease;">
         <div class="container">
             <button data-bs-toggle="collapse" data-bs-target="#navbarResponsive" class="navbar-toggler navbar-toggler-right" type="button" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
                 <i class="fa fa-bars"></i>
@@ -66,7 +66,7 @@ $tmp = new TemplateBasics();
 </header>
 
 <h1> working</h1>
-<?php var_dump($tplData['paragraph']);?>
+<?php var_dump($tplData['paragraphs']);?>
 
 <section class="about m-lg-5">
         <h1 class="text-warning container">About our team</h1>
@@ -74,10 +74,10 @@ $tmp = new TemplateBasics();
             <div class="container">
                 <div class="row align-items-center">
                     <div class="col-lg-6 text-left">
-                        <p class="text-white">about us first paragraph</p>
+                        <p class="text-white"><?php echo $tplData['paragraphs'][0]['paragraph'];?></p>
                     </div>
                     <div class="col-lg-6">
-                        <img src="../../../swarmwebsite/app/images/teamphoto2.png" class="img-fluid" alt="Image">
+                        <img src=<?php echo $tplData['paragraphs'][0]['img'];?> class="img-fluid" alt="Image">
                     </div>
                 </div>
             </div>
@@ -87,10 +87,10 @@ $tmp = new TemplateBasics();
             <div class="container">
                 <div class="row align-items-center">
                     <div class="col-lg-6">
-                        <img src="../../../swarmwebsite/app/images/teamphoto2.png" class="img-fluid" alt="Second Image">
+                        <img src=<?php echo $tplData['paragraphs'][1]['img'];?> class="img-fluid" alt="Second Image">
                     </div>
                     <div class="col-lg-6 text-right">
-                        <p class="text-white">about us second paragraph</p>
+                        <p class="text-white"><?php echo $tplData['paragraphs'][1]['paragraph'];?></p>
                     </div>
                 </div>
             </div>
