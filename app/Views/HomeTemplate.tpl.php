@@ -66,7 +66,7 @@ $tmp = new TemplateBasics();
 </header>
 
 <h1> working</h1>
-
+<?php var_dump($tplData['paragraph']);?>
 
 <section class="about m-lg-5">
         <h1 class="text-warning container">About our team</h1>

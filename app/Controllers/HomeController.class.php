@@ -3,6 +3,8 @@
 namespace web\Controllers;
 
 
+use web\Models\MyDatabase;
+
 class HomeController implements IController
 {
 
@@ -13,6 +15,8 @@ class HomeController implements IController
     {
 
         $tplData['title'] = "Home";
+        $db = new MyDatabase();
+        $tplData['paragraph'] = $db->getParagraphs();
 
         return $tplData;
     }
