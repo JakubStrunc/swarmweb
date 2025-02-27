@@ -4,6 +4,12 @@
 //////////////////////////////////////////////////////////////////
 
 /** Klic defaultni webove stranky. */
+
+
+define("DB_SERVER","localhost");
+define("DB_NAME","swarm");
+define("DB_USER","root");
+define("DB_PASS","dubec123");
 const DEFAULT_WEB_PAGE_KEY = "Home";
 
 /** Dostupne webove stranky. */

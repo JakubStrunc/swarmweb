@@ -15,7 +15,7 @@ class HomeController implements IController
     {
 
         $tplData['title'] = "Home";
-
+        $db = new MyDatabase();
 
         return $tplData;
     }
