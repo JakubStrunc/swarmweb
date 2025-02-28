@@ -65,8 +65,8 @@ $tmp = new TemplateBasics();
     <!-- Section: Design Block -->
 </header>
 
-<h1> working</h1>
-<?php //var_dump($tplData['paragraphs']);?>
+<!--<h1> working</h1>-->
+<?php //var_dump($tplData['about']);?>
 
 <section class="about m-lg-5">
         <h1 class="text-warning container">About our team</h1>
@@ -74,10 +74,10 @@ $tmp = new TemplateBasics();
             <div class="container">
                 <div class="row align-items-center">
                     <div class="col-lg-6 text-left">
-                        <p class="text-white"><?php echo $tplData['paragraphs'][0]['paragraph'];?></p>
+                        <p class="text-white"><?php echo $tplData['about'][0]['text'];?></p>
                     </div>
                     <div class="col-lg-6">
-                        <img src=<?php echo $tplData['paragraphs'][0]['img'];?> class="img-fluid" alt="Image">
+                        <img src="<?php echo $tplData['about'][0]['photo'];?>" class="img-fluid" alt="Image">
                     </div>
                 </div>
             </div>
@@ -87,10 +87,10 @@ $tmp = new TemplateBasics();
             <div class="container">
                 <div class="row align-items-center">
                     <div class="col-lg-6">
-                        <img src=<?php echo $tplData['paragraphs'][1]['img'];?> class="img-fluid" alt="Second Image">
+                        <img src="<?php echo $tplData['about'][1]['photo'];?>" class="img-fluid" alt="Second Image">
                     </div>
                     <div class="col-lg-6 text-right">
-                        <p class="text-white"><?php echo $tplData['paragraphs'][1]['paragraph'];?></p>
+                        <p class="text-white"><?php echo $tplData['about'][1]['text'];?></p>
                     </div>
                 </div>
             </div>
@@ -99,109 +99,56 @@ $tmp = new TemplateBasics();
     <section>
         <div class="container py-5">
             <div class="main-timeline-2">
-                <div class="timeline-2 right-2" data-aos="fade-up">
-                    <div class="card"" style="background-color: black; border-color: #FFC328">
-                        <img src="../../../swarmwebsite/app/images/teamphoto2.png" class="card-img-top"
+                <?php foreach ($tplData['events'] as $index => $event): ?>
+                    <div class="timeline-2 <?= $index % 2 == 0 ? 'right-2' : 'left-2' ?>" data-aos="fade-up">
+                        <div class="card"" style="background-color: black; border-color: #FFC328">
+                        <img src="<?php echo $event['photo'] ?>" class="card-img-top"
                              alt="Responsive image">
                         <div class="card-body p-4">
-                            <h4 class="fw-bold mb-4 text-warning">Duis aute irure dolor</h4>
-                            <p class=" text-white mb-4"><i class="far fa-clock" aria-hidden="true"></i> 2016</p>
-                            <p class="mb-0 text-white">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium
-                                doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi
-                                architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit
-                                aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem
-                                sequi nesciunt.</p>
+                            <h4 class="fw-bold mb-4 text-warning"><?php echo $event['name'] ?></h4>
+                            <p class=" text-white mb-4"><i class="far fa-clock" aria-hidden="true"></i> <?php echo $event['date'] ?></p>
+                            <p class="mb-0 text-white"><?php echo $event['description'] ?></p>
                         </div>
                     </div>
-                </div>
-                <div class="timeline-2 left-2" data-aos="fade-up">
-                    <div class="card">
-                        <img src="../../../swarmwebsite/app/images/teamphoto2.png" class="card-img-top"
-                             alt="Responsive image">
-                        <div class="card-body p-4">
-                            <h4 class="fw-bold mb-4">Sed ut nihil unde omnis</h4>
-                            <p class="text-muted mb-4"><i class="far fa-clock" aria-hidden="true"></i> 2015</p>
-                            <p class="mb-0">Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur,
-                                adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam
-                                aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis
-                                suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure
-                                reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui
-                                dolorem eum fugiat quo voluptas nulla pariatur?</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="timeline-2 right-2" data-aos="fade-up">
-                    <div class="card">
-                        <img src="../../../swarmwebsite/app/images/teamphoto2.png" class="card-img-top"
-                             alt="Responsive image">
-                        <div class="card-body p-4">
-                            <h4 class="fw-bold mb-4"> Quis autem vel eum voluptate</h4>
-                            <p class="text-muted mb-4"><i class="far fa-clock" aria-hidden="true"></i> 2014</p>
-                            <p class="mb-0">At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis
-                                praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint
-                                occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi,
-                                id est laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio.</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="timeline-2 left-2" data-aos="fade-up">
-                    <div class="card">
-                        <img src="../../../swarmwebsite/app/images/teamphoto2.png" class="card-img-top"
-                             alt="Responsive image">
-                        <div class="card-body p-4">
-                            <h4 class="fw-bold mb-4">Mussum ipsum cacilds</h4>
-                            <p class="text-muted mb-4"><i class="far fa-clock" aria-hidden="true"></i> 2013</p>
-                            <p class="mb-0">Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus
-                                saepe eveniet ut et voluptates repudiandae sint et molestiae non recusandae. Itaque earum rerum
-                                hic tenetur a sapiente delectus, ut aut reiciendis voluptatibus maiores alias consequatur aut
-                                perferendis doloribus asperiores repellat.</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="timeline-2 right-2" data-aos="fade-up">
-                    <div class="card">
-                        <img src="../../../swarmwebsite/app/images/teamphoto2.png" class="card-img-top"
-                             alt="Responsive image">
-                        <div class="card-body p-4">
-                            <h4 class="fw-bold mb-4">Ut enim ad minim veniam</h4>
-                            <p class="text-muted mb-4"><i class="far fa-clock" aria-hidden="true"></i> 2017</p>
-                            <p class="mb-0">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-                                incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-                                ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-                        </div>
-                    </div>
-                </div>
+                <?php endforeach; ?>
             </div>
         </div>
     </section>
+
     <section data-aos="fade-up">
         <h1 class="text-warning" style="padding-bottom: 30px; text-align: center;">Featured Images</h1>
         <div class="container">
-            <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
-                <ol class="carousel-indicators">
-                    <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-                    <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-                    <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
-                </ol>
-                <div class="carousel-inner">
-                    <div class="carousel-item active">
-                        <img class="d-block w-100" src="../../../swarmwebsite/app/images/teamphoto2.png" alt="First slide">
-                    </div>
-                    <div class="carousel-item">
-                        <img class="d-block w-100" src="../../../swarmwebsite/app/images/teamphoto1.png" alt="Second slide">
-                    </div>
-                    <div class="carousel-item">
-                        <img class="d-block w-100" src="../../../swarmwebsite/app/images/teamphoto2.png" alt="Third slide">
-                    </div>
+            <div id="carouselExample" class="carousel slide" data-bs-ride="carousel">
+
+                <!-- ✅ Light Mode Carousel Indicators -->
+                <div class="carousel-indicators">
+                    <?php foreach ($tplData['photos'] as $index => $photo): ?>
+                        <button type="button" data-bs-target="#carouselExample" data-bs-slide-to="<?php echo $index ?>"
+                                class="<?php echo $index === 0 ? 'active' : '' ?>"
+                                aria-label="Slide <?php echo $index + 1 ?>">
+                        </button>
+                    <?php endforeach; ?>
                 </div>
-                <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+
+                <!-- ✅ Light Mode Carousel Inner Items -->
+                <div class="carousel-inner">
+                    <?php foreach ($tplData['photos'] as $index => $photo): ?>
+                        <div class="carousel-item <?php echo $index === 0 ? 'active' : '' ?>" data-bs-interval="<?php echo ($index === 0) ? 10000 : 2000 ?>">
+                            <img src="<?php echo $photo['path'] ?>" class="d-block w-100" alt="Slide <?php echo $index + 1 ?>">
+                        </div>
+                    <?php endforeach; ?>
+                </div>
+
+                <!-- ✅ Previous & Next Controls -->
+                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
                     <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-
-                </a>
-                <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+                    <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
                     <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Next</span>
+                </button>
 
-                </a>
             </div>
         </div>
     </section>
@@ -236,26 +183,15 @@ $tmp = new TemplateBasics();
 
     <footer>
         <div class="container">
-            <div class="row">
-                <div class="col-md-4">
+            <div class="row justify-content-between align-items-center">
+                <div class="col-md-4 text-start">
                     <span class="copyright text-warning">Copyright&nbsp;© SWARM 2025</span>
                 </div>
-                <div class="col-md-4">
-                    <ul class="list-inline social-buttons">
-                        <li class="list-inline-item">
-                            <a href="notdonelink" target="_blank" class="social-icon">
-                                <i class="fa fa-instagram"></i>
-                            </a>
-                        </li>
-                        <li class="list-inline-item">
-                            <a href="notdonelink" target="_blank" class="social-icon">
-                                <i class="fa fa-youtube-play"></i>
-                            </a>
-                        </li>
-                    </ul>
-                </div>
                 <div class="col-md-4 text-end">
-                    <span class="copyright text-warning">Developed by SWARM TEAM</span>
+                    <!-- ✅ Clickable Button for Sign-In Modal -->
+                    <button type="button" class="btn btn-link text-warning p-0" data-bs-toggle="modal" data-bs-target="#signInModal">
+                        Developed by SWARM TEAM
+                    </button>
                 </div>
             </div>
         </div>
@@ -263,9 +199,10 @@ $tmp = new TemplateBasics();
 
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
     <script src="../../../swarmwebsite/app/JavaScript/navbar.js"></script>
+
     <script>
         AOS.init({
             duration: 1000,  // Animation duration in milliseconds

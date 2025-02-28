@@ -119,13 +119,13 @@ class MyDatabase {
     private function insertDefaultData() {
         // Pokud tabulka ABOUT neobsahuje žádná data, vloží výchozí záznam
         if (empty($this->selectFromTable("ABOUT"))) {
-            $this->insertIntoTable("ABOUT", "text, photo", "'Toto je výchozí text About.', 'default.jpg'");
-            $this->insertIntoTable("ABOUT", "text, photo", "'Toto je výchozí text About.', 'default.jpg'");
+            $this->insertIntoTable("ABOUT", "text, photo", "'Based in Vancouver, The University Swarm Division was born from passionate members who loved the growth of competition and wanted to maintain the robotics community post secondary. Team members were invited into specific roles with members specialising in strategy, driving, notebook, and CAD. Prioritizing passion and commitment, we were more than willing to accept new members to build a community. Our goal is to enthusiastically approach problems with solutions that are uniquely our own. We prioritize dedication and acknowledge that skills grow with consistent effort. We also value teamwork and mentorship, setting up a mentorship program for Burnaby’s high school VEX program that now boasts over 70 students.', '../../../swarmwebsite/app/images/teamphoto2.png'");
+            $this->insertIntoTable("ABOUT", "text, photo", "'The Pacific Northwest has tried for years to create a university VEX team, with successful attempts few and far between. In forming our own team, our focus isn’t just on competing, but to establish ourselves geographically and inspire nearby universities while doing so. We want robotics to be more accessible and for the program to expand. Robotics is engaging, educational, and important to everyone’s futures, and simply fun! No atmosphere and community compares, and we hope we can encourage more people to do what they love.', '../../../swarmwebsite/app/images/teamphoto2.png'");
         }
 
         // Pokud tabulka EVENTS neobsahuje žádná data, vloží výchozí událost
         if (empty($this->selectFromTable("EVENTS"))) {
-            $this->insertIntoTable("EVENTS", "name, date, description, photo", "'První událost', '2025-06-15', 'Popis první události.', 'event.jpg'");
+            $this->insertIntoTable("EVENTS", "name, date, description, photo", "'První událost', '2025-06-15', 'Popis první události.', '../../../swarmwebsite/app/images/teamphoto2.png'");
         }
 
         // Pokud tabulka USERS neobsahuje uživatele, vloží výchozího uživatele
@@ -133,10 +133,15 @@ class MyDatabase {
             $hashedPassword = password_hash("youjustgotswarmed!", PASSWORD_BCRYPT);
             $this->insertIntoTable("USERS", "email, password", "'502xtheswarm@gmail.com', '$hashedPassword'");
         }
+        if (empty($this->selectFromTable("PHOTOS"))) {
+            $this->insertIntoTable("PHOTOS", "path", "'../../../swarmwebsite/app/images/teamphoto2.png'");
+            $this->insertIntoTable("PHOTOS", "path", "'../../../swarmwebsite/app/images/teamphoto1.png'");
+            $this->insertIntoTable("PHOTOS", "path", "'../../../swarmwebsite/app/images/teamphoto2.png'");
+        }
     }
 
-    public function getAllAbout() {
-        return $this->selectFromTable("ABOUT", "", "id DESC");
+    public function getAbout() {
+        return $this->selectFromTable("ABOUT", "");
     }
 
     public function updateAbout($id, $text, $photo) {
@@ -153,6 +158,10 @@ class MyDatabase {
 
     public function deleteEvent($id) {
         return $this->deleteFromTable("EVENTS", "id = $id");
+    }
+
+    public function getAllPhotos() {
+        return $this->selectFromTable("PHOTOS", "");
     }
 
 

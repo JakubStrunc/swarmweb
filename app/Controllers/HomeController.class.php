@@ -17,6 +17,10 @@ class HomeController implements IController
         $tplData['title'] = "Home";
         $db = new MyDatabase();
 
+        $tplData['about'] = $db->getAbout();
+        $tplData['events'] = $db->getAllEvents();
+        $tplData['photos'] = $db->getAllPhotos();
+
         return $tplData;
     }
 }
