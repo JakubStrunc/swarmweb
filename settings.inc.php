@@ -9,7 +9,7 @@
 define("DB_SERVER","localhost");
 define("DB_NAME","swarm");
 define("DB_USER","root");
-define("DB_PASS","dubec123");
+define("DB_PASS","");
 const DEFAULT_WEB_PAGE_KEY = "Home";
 
 /** Dostupne webove stranky. */

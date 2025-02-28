@@ -83,7 +83,7 @@ class MyDatabase {
                 id INT AUTO_INCREMENT PRIMARY KEY,
                 text TEXT NOT NULL,
                 photo VARCHAR(255) NOT NULL
-            )
+            ) ENGINE = InnoDB;
         ");
 
         $this->executequery("
@@ -93,22 +93,22 @@ class MyDatabase {
                 date DATE NOT NULL,
                 description TEXT NOT NULL,
                 photo VARCHAR(255) NOT NULL
-            )
+            ) ENGINE = InnoDB;
         ");
 
         $this->executequery("
             CREATE TABLE IF NOT EXISTS PHOTOS (
                 id INT AUTO_INCREMENT PRIMARY KEY,
                 path VARCHAR(255) NOT NULL
-            )
+            ) ENGINE = InnoDB;
         ");
 
         $this->executequery("
             CREATE TABLE IF NOT EXISTS USERS (
                 id INT AUTO_INCREMENT PRIMARY KEY,
-                email VARCHAR(255) NOT NULL UNIQUE,
-                password VARCHAR(255) NOT NULL
-            )
+                email VARCHAR(45) NOT NULL UNIQUE,
+                password VARCHAR(45) NOT NULL
+            ) ENGINE = InnoDB;
         ");
 
         // ✅ Vložení výchozích dat pouze pokud nejsou v tabulkách žádná data
