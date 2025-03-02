@@ -20,6 +20,7 @@ class HomeController implements IController
         $tplData['about'] = $db->getAbout();
         $tplData['events'] = $db->getAllEvents();
         $tplData['photos'] = $db->getAllPhotos();
+        $tplData['sponsors'] = $db->getAllSponsors();
 
         return $tplData;
     }

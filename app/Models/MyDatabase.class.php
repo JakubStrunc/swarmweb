@@ -107,8 +107,15 @@ class MyDatabase {
             CREATE TABLE IF NOT EXISTS USERS (
                 id INT AUTO_INCREMENT PRIMARY KEY,
                 email VARCHAR(45) NOT NULL UNIQUE,
-                password VARCHAR(45) NOT NULL
+                password VARCHAR(255) NOT NULL
             ) ENGINE = InnoDB;
+        ");
+
+        $this->executequery("
+        CREATE TABLE IF NOT EXISTS SPONSORS (
+        id INT AUTO_INCREMENT PRIMARY KEY,
+        path VARCHAR(255) NOT NULL
+        ) ENGINE = InnoDB;
         ");
 
         // ✅ Vložení výchozích dat pouze pokud nejsou v tabulkách žádná data
@@ -138,6 +145,13 @@ class MyDatabase {
             $this->insertIntoTable("PHOTOS", "path", "'../../../swarmwebsite/app/images/teamphoto1.png'");
             $this->insertIntoTable("PHOTOS", "path", "'../../../swarmwebsite/app/images/teamphoto2.png'");
         }
+        if (empty($this->selectFromTable("SPONSORS")))
+        {
+            $this->insertIntoTable("SPONSORS", "path", "'app/images/sponsors/Nav_Canadalogo.png'");
+            $this->insertIntoTable("SPONSORS", "path", "'app/images/sponsors/Schneiderlogo.png'");
+            $this->insertIntoTable("SPONSORS", "path", "'app/images/sponsors/EnerSvslogo.png'");
+            $this->insertIntoTable("SPONSORS", "path", "'app/images/sponsors/Tri-ShoreYachtServiceslogo.png'");
+        }
     }
 
     public function getAbout() {
@@ -164,8 +178,10 @@ class MyDatabase {
         return $this->selectFromTable("PHOTOS", "");
     }
 
-
-
+    public function getAllSponsors()
+    {
+        return $this->selectFromTable("SPONSORS", "");
+    }
 
 
 }

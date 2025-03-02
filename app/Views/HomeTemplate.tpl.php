@@ -18,9 +18,12 @@ $tmp = new TemplateBasics();
     <title><?php echo $tplData['title'] ?></title>
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
-          rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">    <link rel="stylesheet" href="../../../swarmwebsite/app/Views/styles/navbar.css">
+          rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="../../../swarmwebsite/app/Views/styles/navbar.css">
     <link rel="stylesheet" href="../../../swarmwebsite/app/Views/styles/timeline.css">
     <link rel="stylesheet" href="../../../swarmwebsite/app/Views/styles/sponsors.css">
+    <link rel="stylesheet" href="../../../swarmwebsite/app/Views/styles/main-page.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" rel="stylesheet">
 
 </head>
@@ -35,13 +38,11 @@ $tmp = new TemplateBasics();
                 <i class="fa fa-bars"></i>
             </button>
             <div class="collapse navbar-collapse" id="navbarResponsive">
-                <img src="../../../swarmwebsite/app/images/Logo.png" style="width: auto;height: 80px;" width="150" height="150" alt="">
+                <img src="../../../swarmwebsite/app/Views/images/Logo.png" style="width: auto;height: 10vh;" alt="">
                 <ul class="navbar-nav ms-auto text-uppercase">
-                    <li class="nav-item"><a class="nav-link custom-hover" href="#about">About</a></li>
-                    <li class="nav-item"><a class="nav-link custom-hover" href="#team">Team</a></li>
-                    <li class="nav-item"><a class="nav-link custom-hover" href="media.html">Media</a></li>
-                    <li class="nav-item"><a class="nav-link custom-hover" href="events.html">Events</a></li>
-                    <li class="nav-item"><a class="nav-link custom-hover" href="#sponsor">Sponsors</a></li>
+                    <li class="nav-item"><a class="nav-link custom-hover" style="font-size: 1.3rem" href="#about">About</a></li>
+                    <li class="nav-item"><a class="nav-link custom-hover" style="font-size: 1.3rem" href="events.html">Events</a></li>
+                    <li class="nav-item"><a class="nav-link custom-hover" style="font-size: 1.3rem" href="#sponsor">Sponsors</a></li>
                 </ul>
             </div>
         </div>
@@ -50,12 +51,24 @@ $tmp = new TemplateBasics();
 
     <!-- Section: Design Block -->
     <section>
-        <div id="intro" class="bg-image" style="background-image: url('../../../swarmwebsite/app/images/teamphoto2.png'); height: 100vh;">
-            <div class="mask" style="background-color: rgba(0, 0, 0, 0.2);">
-                <div class="container d-flex justify-content-center align-items-center h-100">
-                    <div class="row align-items-center">
-                        <div class="col-12">
-                            <!-- Removed the "Studio" text here -->
+        <div  class="bg-image main-img" style="background-image: url('../../../swarmwebsite/app/Views/images/team_photo.JPG'); height: 100vh; background-size: cover; background-position: center top 75%; background-repeat: no-repeat">
+            <div class="container d-flex justify-content-start  align-items-center h-100">
+                <div class="row">
+                    <div class="col-md-6 position-relative" style="position: absolute;">
+                        <!-- ✅ Team Name Image (Moved Down 25%) -->
+                        <img src="../../../swarmwebsite/app/Views/images/team_name.png"
+                             style="width: 40vw; height: auto;"
+                             alt="Team Name">
+
+                        <!-- ✅ Social Media Buttons -->
+                        <div class="d-flex mt-3 gap-3" style="margin-left: 15%">
+                            <a href="https://www.youtube.com" target="_blank" class="btn-lg rounded-circle d-flex align-items-center justify-content-center social-btn">
+                                <i class="bi-instagram" style="font-size: 2vw;"></i>
+                            </a>
+                            <a href="https://www.youtube.com" target="_blank" class="btn-lg rounded-circle d-flex align-items-center justify-content-center social-btn">
+                                <i class="bi-youtube" style="font-size: 2vw;"></i>
+                            </a>
+
                         </div>
                     </div>
                 </div>
@@ -66,8 +79,10 @@ $tmp = new TemplateBasics();
 </header>
 
 <!--<h1> working</h1>-->
-<?php //var_dump($tplData['about']);?>
 
+<?php //var_dump($tplData['about']);?>
+<i class="bi-alarm" style="font-size: 2rem; color: cornflowerblue;"></i>
+<i class="bi-instagram" style="font-size: 2rem; color: cornflowerblue;"></i>
 <section class="about m-lg-5">
         <h1 class="text-warning container">About our team</h1>
         <section class="section-one m-lg-5">
@@ -159,18 +174,11 @@ $tmp = new TemplateBasics();
         </div>
         <div class="container">
             <div class="row">
-                <div class="col-lg-3 col-md-6 col-sm-12">
-                    <img src="../../../swarmwebsite/app/images/sponsors/Nav_Canadalogo.png" class="img-fluid" alt="Sponsor 2">
-                </div>
-                <div class="col-lg-3 col-md-6 col-sm-12">
-                    <img src="../../../swarmwebsite/app/images/sponsors/Schneiderlogo.png" class="img-fluid" alt="Sponsor 3">
-                </div>
-                <div class="col-lg-3 col-md-6 col-sm-12">
-                    <img src="../../../swarmwebsite/app/images/sponsors/EnerSvslogo.png" class="img-fluid" alt="Sponsor 1">
-                </div>
-                <div class="col-lg-3 col-md-6 col-sm-12">
-                    <img src="../../../swarmwebsite/app/images/sponsors/Tri-ShoreYachtServiceslogo.png" class="img-fluid" alt="Sponsor 4">
-                </div>
+                <?php foreach ($tplData['sponsors'] as $index => $photo): ?>
+                    <div class="col-lg-3 col-md-6 col-sm-12">
+                        <img src="<?php echo $photo['path']; ?>" class="img-fluid" alt="Sponsor 2">
+                    </div>
+                <?php endforeach; ?>
             </div>
             <div class="container d-flex flex-column align-items-center p-lg-5" style="padding-bottom: 0;">
                 <p class="text-white">We are actively looking for sponsors, contact us at
@@ -180,8 +188,32 @@ $tmp = new TemplateBasics();
         </div>
     </section>
 
+    <div class="modal fade" id="signInModal" tabindex="-1" aria-labelledby="signInModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="signInModalLabel">Admin</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <!-- Sign-In Form -->
+                <form action="signin.php" method="POST">
+                    <div class="mb-3">
+                        <label for="email" class="form-label">Email</label>
+                        <input type="email" class="form-control" id="email" name="email" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="password" class="form-label">Password</label>
+                        <input type="password" class="form-control" id="password" name="password" required>
+                    </div>
+                    <button type="submit" class="btn btn-warning w-100">Sign In</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
 
-    <footer>
+    <footer class="mb-3">
         <div class="container">
             <div class="row justify-content-between align-items-center">
                 <div class="col-md-4 text-start">
