@@ -7,7 +7,12 @@ class MyDatabase {
     /** @var \PDO $pdo */
     private $pdo;
 
-    private $mySession;
+    /** @var MySession $mySession */
+    protected MySession $mySession;
+
+
+    /** @var string $userSessionKey */
+    private string $userSessionKey = "current_user_id";
 
     public function __construct(){
         $this->pdo = new \PDO("mysql:host=".DB_SERVER.";dbname=".DB_NAME, DB_USER, DB_PASS);
@@ -126,8 +131,8 @@ class MyDatabase {
     private function insertDefaultData() {
         // Pokud tabulka ABOUT neobsahuje žádná data, vloží výchozí záznam
         if (empty($this->selectFromTable("ABOUT"))) {
-            $this->insertIntoTable("ABOUT", "text, photo", "'Based in Vancouver, The University Swarm Division was born from passionate members who loved the growth of competition and wanted to maintain the robotics community post secondary. Team members were invited into specific roles with members specialising in strategy, driving, notebook, and CAD. Prioritizing passion and commitment, we were more than willing to accept new members to build a community. Our goal is to enthusiastically approach problems with solutions that are uniquely our own. We prioritize dedication and acknowledge that skills grow with consistent effort. We also value teamwork and mentorship, setting up a mentorship program for Burnaby’s high school VEX program that now boasts over 70 students.', '../../../swarmwebsite/app/images/teamphoto2.png'");
-            $this->insertIntoTable("ABOUT", "text, photo", "'The Pacific Northwest has tried for years to create a university VEX team, with successful attempts few and far between. In forming our own team, our focus isn’t just on competing, but to establish ourselves geographically and inspire nearby universities while doing so. We want robotics to be more accessible and for the program to expand. Robotics is engaging, educational, and important to everyone’s futures, and simply fun! No atmosphere and community compares, and we hope we can encourage more people to do what they love.', '../../../swarmwebsite/app/images/teamphoto2.png'");
+            $this->insertIntoTable("ABOUT", "text, photo", "'Based in Vancouver, The University Swarm Division was born from passionate members who loved the growth of competition and wanted to maintain the robotics community post secondary. Team members were invited into specific roles with members specialising in strategy, driving, notebook, and CAD. Prioritizing passion and commitment, we were more than willing to accept new members to build a community. Our goal is to enthusiastically approach problems with solutions that are uniquely our own. We prioritize dedication and acknowledge that skills grow with consistent effort. We also value teamwork and mentorship, setting up a mentorship program for Burnaby’s high school VEX program that now boasts over 70 students.', 'app/Views/images/teamphoto2.png'");
+            $this->insertIntoTable("ABOUT", "text, photo", "'The Pacific Northwest has tried for years to create a university VEX team, with successful attempts few and far between. In forming our own team, our focus isn’t just on competing, but to establish ourselves geographically and inspire nearby universities while doing so. We want robotics to be more accessible and for the program to expand. Robotics is engaging, educational, and important to everyone’s futures, and simply fun! No atmosphere and community compares, and we hope we can encourage more people to do what they love.', 'app/Views/images/teamphoto2.png'");
         }
 
         // Pokud tabulka EVENTS neobsahuje žádná data, vloží výchozí událost
@@ -141,16 +146,16 @@ class MyDatabase {
             $this->insertIntoTable("USERS", "email, password", "'502xtheswarm@gmail.com', '$hashedPassword'");
         }
         if (empty($this->selectFromTable("PHOTOS"))) {
-            $this->insertIntoTable("PHOTOS", "path", "'../../../swarmwebsite/app/images/teamphoto2.png'");
-            $this->insertIntoTable("PHOTOS", "path", "'../../../swarmwebsite/app/images/teamphoto1.png'");
-            $this->insertIntoTable("PHOTOS", "path", "'../../../swarmwebsite/app/images/teamphoto2.png'");
+            $this->insertIntoTable("PHOTOS", "path", "'app/Views/images/teamphoto2.png'");
+            $this->insertIntoTable("PHOTOS", "path", "'app/Views/images/teamphoto1.png'");
+            $this->insertIntoTable("PHOTOS", "path", "'app/Views/images/teamphoto2.png'");
         }
         if (empty($this->selectFromTable("SPONSORS")))
         {
-            $this->insertIntoTable("SPONSORS", "path", "'app/images/sponsors/Nav_Canadalogo.png'");
-            $this->insertIntoTable("SPONSORS", "path", "'app/images/sponsors/Schneiderlogo.png'");
-            $this->insertIntoTable("SPONSORS", "path", "'app/images/sponsors/EnerSvslogo.png'");
-            $this->insertIntoTable("SPONSORS", "path", "'app/images/sponsors/Tri-ShoreYachtServiceslogo.png'");
+            $this->insertIntoTable("SPONSORS", "path", "'app/Views/images/sponsors/Nav_Canadalogo.png'");
+            $this->insertIntoTable("SPONSORS", "path", "'app/Views/images/sponsors/Schneiderlogo.png'");
+            $this->insertIntoTable("SPONSORS", "path", "'app/Views/images/sponsors/EnerSvslogo.png'");
+            $this->insertIntoTable("SPONSORS", "path", "'app/Views/images/sponsors/Tri-ShoreYachtServiceslogo.png'");
         }
     }
 
@@ -182,6 +187,50 @@ class MyDatabase {
     {
         return $this->selectFromTable("SPONSORS", "");
     }
+
+    /**
+     * uzivatel s emailem
+     * @param string $email
+     * @return array|false|null
+     */
+    public function userLoginEmail(string $email): false|array|null
+    {
+
+        return $this->selectFromTable("USERS", "email = '$email'");
+    }
+
+    /**
+     * zkontroluj heslo
+     * @param string $heslo
+     * @param array $user
+     * @return bool
+     */
+    public function userLoginPass(string $heslo, array $user): bool
+    {
+
+        if(password_verify($heslo, $user[0]['password'])){
+
+            $_SESSION[$this->userSessionKey] = $user[0]["id"];
+            return true;
+        }else{
+            return false;
+        }
+    }
+
+    /**
+     * odhalseni uzivatele
+     * @return void
+     */
+    public function userLogout(): void
+    {
+        unset($_SESSION[$this->userSessionKey]);
+    }
+
+    public function isUserLogged(): bool
+    {
+        return isset($_SESSION[$this->userSessionKey]);
+    }
+
 
 
 }

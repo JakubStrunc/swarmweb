@@ -43,6 +43,7 @@ $tmp = new TemplateBasics();
                     <li class="nav-item"><a class="nav-link custom-hover" style="font-size: 1.3rem" href="#about">About</a></li>
                     <li class="nav-item"><a class="nav-link custom-hover" style="font-size: 1.3rem" href="events.html">Events</a></li>
                     <li class="nav-item"><a class="nav-link custom-hover" style="font-size: 1.3rem" href="#sponsor">Sponsors</a></li>
+
                 </ul>
             </div>
         </div>
@@ -81,15 +82,14 @@ $tmp = new TemplateBasics();
 <!--<h1> working</h1>-->
 
 <?php //var_dump($tplData['about']);?>
-<i class="bi-alarm" style="font-size: 2rem; color: cornflowerblue;"></i>
-<i class="bi-instagram" style="font-size: 2rem; color: cornflowerblue;"></i>
+
 <section class="about m-lg-5">
         <h1 class="text-warning container">About our team</h1>
         <section class="section-one m-lg-5">
             <div class="container">
                 <div class="row align-items-center">
                     <div class="col-lg-6 text-left">
-                        <p class="text-white"><?php echo $tplData['about'][0]['text'];?></p>
+                        <p class="text-white" style="font-size: 1.3rem"> <?php echo $tplData['about'][0]['text'];?></p>
                     </div>
                     <div class="col-lg-6">
                         <img src="<?php echo $tplData['about'][0]['photo'];?>" class="img-fluid" alt="Image">
@@ -105,7 +105,7 @@ $tmp = new TemplateBasics();
                         <img src="<?php echo $tplData['about'][1]['photo'];?>" class="img-fluid" alt="Second Image">
                     </div>
                     <div class="col-lg-6 text-right">
-                        <p class="text-white"><?php echo $tplData['about'][1]['text'];?></p>
+                        <p class="text-white" style="font-size: 1.3rem"><?php echo $tplData['about'][1]['text'];?></p>
                     </div>
                 </div>
             </div>
@@ -181,7 +181,7 @@ $tmp = new TemplateBasics();
                 <?php endforeach; ?>
             </div>
             <div class="container d-flex flex-column align-items-center p-lg-5" style="padding-bottom: 0;">
-                <p class="text-white">We are actively looking for sponsors, contact us at
+                <p class="text-white" style="font-size: 1.3rem">We are actively looking for sponsors, contact us at
                     <a href="mailto:random@gmail.com" class="text-warning">random@gmail.com</a>!
                 </p>
             </div>
@@ -196,18 +196,19 @@ $tmp = new TemplateBasics();
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <!-- Sign-In Form -->
-                <form action="signin.php" method="POST">
-                    <div class="mb-3">
-                        <label for="email" class="form-label">Email</label>
-                        <input type="email" class="form-control" id="email" name="email" required>
-                    </div>
-                    <div class="mb-3">
-                        <label for="password" class="form-label">Password</label>
-                        <input type="password" class="form-control" id="password" name="password" required>
-                    </div>
-                    <button type="submit" class="btn btn-warning w-100">Sign In</button>
-                </form>
+                <div class="mb-3">
+                    <label for="email" class="form-label">Email</label>
+                    <input type="email" class="form-control" id="email" name="email" required>
+                </div>
+                <div class="mb-3">
+                    <label for="password" class="form-label">Password</label>
+                    <input type="password" class="form-control" id="password" name="password" required>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <!-- Prihlasit btn -->
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <input type="button" id="signin" class="btn btn-warning" value="Sign in">
             </div>
         </div>
     </div>
@@ -233,7 +234,10 @@ $tmp = new TemplateBasics();
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="../../../swarmwebsite/app/JavaScript/navbar.js"></script>
+    <script src="app/JavaScript/Admin.js"></script>
+    <script src="app/JavaScript/Alert.js"></script>
 
     <script>
         AOS.init({
