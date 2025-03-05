@@ -44,6 +44,11 @@ $tmp = new TemplateBasics();
                     <li class="nav-item"><a class="nav-link custom-hover" style="font-size: 1.3rem" href="events.html">Events</a></li>
                     <li class="nav-item"><a class="nav-link custom-hover" style="font-size: 1.3rem" href="#sponsor">Sponsors</a></li>
 
+                    <?php if($tplData['userlogged']){ ?>
+                        <li class="nav-item">
+                            <button id="signout" class="btn btn-danger" style="font-size: 1.3rem;">Sign Out</button></li>
+                    <?php } ?>
+
                 </ul>
             </div>
         </div>
@@ -81,7 +86,7 @@ $tmp = new TemplateBasics();
 
 <!--<h1> working</h1>-->
 
-<?php //var_dump($tplData['about']);?>
+<?php var_dump($tplData['userlogged']);?>
 
 <section class="about m-lg-5">
         <h1 class="text-warning container">About our team</h1>

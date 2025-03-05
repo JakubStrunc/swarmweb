@@ -24,7 +24,7 @@ class HomeController implements IController
         $tplData['photos'] = $this->db->getAllPhotos();
         $tplData['sponsors'] = $this->db->getAllSponsors();
 
-        //$tplData['userlogged'] = $this->db->isUserLogged();
+        $tplData['userlogged'] = $this->db->isUserLogged();
 
 
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -71,6 +71,12 @@ class HomeController implements IController
                 }else{
                     echo json_encode(['success' => false, 'error' => ['email' => "Wrong email", 'heslo' => null]]);
                 }
+                exit();
+            }
+
+            if(isset($data['action']) && $data['action'] == 'signout') {
+                $this->db->userLogout();
+                echo json_encode(['success' => true]);
                 exit();
             }
         }

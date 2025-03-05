@@ -49,3 +49,29 @@ $(document).on('click', '#signin', function(event) {
         }
     });
 });
+
+
+$(document).on('click', '#signout', function(event) {
+    event.preventDefault();
+
+    $.ajax({
+        url: window.location.href, // ✅ Ensure logout.php destroys the session
+        type: 'POST',
+        data: JSON.stringify({
+            action: 'signout'
+        }),
+        success: function(response) {
+            console.log("Logout successful:", response);
+            sessionStorage.setItem("showAlert", "true");
+            sessionStorage.setItem("alertType", "danger");
+            sessionStorage.setItem("alertMessage", "Logout successful!");
+            window.location.href = window.location.href;
+
+            // ✅ Redirect to home page after logout
+            window.location.href = "index.php";
+        },
+        error: function(xhr, status, error) {
+            console.log("Logout error:", status, error);
+        }
+    });
+});
