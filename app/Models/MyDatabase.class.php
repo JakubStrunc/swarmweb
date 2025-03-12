@@ -5,7 +5,7 @@ namespace web\Models;
 class MyDatabase {
 
     /** @var \PDO $pdo */
-    private $pdo;
+    private \PDO $pdo;
 
     /** @var MySession $mySession */
     protected MySession $mySession;
@@ -137,7 +137,8 @@ class MyDatabase {
 
         // Pokud tabulka EVENTS neobsahuje žádná data, vloží výchozí událost
         if (empty($this->selectFromTable("EVENTS"))) {
-            $this->insertIntoTable("EVENTS", "name, date, description, photo", "'První událost', '2025-06-15', 'Popis první události.', '../../../swarmwebsite/app/images/teamphoto2.png'");
+            $this->insertIntoTable("EVENTS", "name, date, description, photo", "'First event', '2025-06-15', 'First event', 'app/Views/images/teamphoto2.png'");
+            $this->insertIntoTable("EVENTS", "name, date, description, photo", "'Second event', '2025-06-15', 'Second event', 'app/Views/images/teamphoto2.png'");
         }
 
         // Pokud tabulka USERS neobsahuje uživatele, vloží výchozího uživatele
@@ -166,6 +167,7 @@ class MyDatabase {
     public function updateAbout($id, $text, $photo) {
         return $this->updateInTable("ABOUT", "text = '$text', photo = '$photo'", "id = $id");
     }
+
 
      public function saveEvent($name, $date, $description, $photo) {
         return $this->insertIntoTable("EVENTS", "name, date, description, photo", "'$name', '$date', '$description', '$photo'");

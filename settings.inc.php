@@ -5,11 +5,14 @@
 
 /** Klic defaultni webove stranky. */
 
-
-define("DB_SERVER","localhost");
-define("DB_NAME","swarm");
-define("DB_USER","root");
-define("DB_PASS","dubec123");
+//define("DB_SERVER","localhost");
+//define("DB_NAME","swarm");
+//define("DB_USER","root");
+//define("DB_PASS","");
+define("DB_SERVER","db");
+define("DB_NAME","mydatabase");
+define("DB_USER","user");
+define("DB_PASS","password");
 const DEFAULT_WEB_PAGE_KEY = "Home";
 
 /** Dostupne webove stranky. */

@@ -8,6 +8,7 @@ class MySession{
      *  Pri vytvoreni objektu je zahajena session.
      */
     public function __construct(){
+        //ob_start();
         if (session_status() == PHP_SESSION_NONE) {
             session_start();
         }

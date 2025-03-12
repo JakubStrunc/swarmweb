@@ -15,29 +15,22 @@ const FILE_EXTENSIONS = array(".class.php", ".interface.php");
 // protoze namespaces zacinaji vlastnim nazvem (namisto nazvu vychoziho adresare)
 // a soubory nemaji jednotnou priponu (ale maji pripony .class.php nebo .interface.php)
 spl_autoload_register(function ($className){
-    // vsimnete si, ze jmeno tridy je zde bez uvodniho lomitka
-    //echo "Nacitam tridu: $className <br>";
-    // upravim v nazvu tridy vychozi adresar aplikace
-    $className = str_replace(BASE_NAMESPACE_NAME, BASE_APP_DIR_NAME, $className);
-    // slozim celou cestu k souboru bez pripony
-    $fileName = dirname(__FILE__) ."\\". $className;
+    if (strncmp(BASE_NAMESPACE_NAME, $className, strlen(BASE_NAMESPACE_NAME)) !== 0) {
+        return;
+    }
 
-    // nacitam tridu nebo interface - upravim cestu k souboru
-    // zjistim, zda exituje soubor s danou tridou a dostupnou priponou
-    foreach(FILE_EXTENSIONS as $ext) {
-        if (file_exists($fileName . $ext)) {
-            //echo $ext;
-            $fileName .= $ext;
-            // nasel jsem, koncim
-            break;
+    $relativeClass = substr($className, strlen(BASE_NAMESPACE_NAME));
+    $relativeClass = str_replace("\\", DIRECTORY_SEPARATOR, $relativeClass);
+    $fileBase = __DIR__ . DIRECTORY_SEPARATOR . BASE_APP_DIR_NAME . $relativeClass;
+
+    foreach (FILE_EXTENSIONS as $extension) {
+        $file = $fileBase . $extension;
+        if (file_exists($file)) {
+            require_once $file;
+            return;
         }
     }
 
-    //echo $fileName;
-
-    // pripojim soubor s pozadovanou tridou
-    //echo "Ze souboru: $fileName <br>";
-    require_once($fileName);
 });
 
 

@@ -19,6 +19,7 @@ class HomeController implements IController
         $tplData['title'] = "Home";
 
 
+
         $tplData['about'] = $this->db->getAbout();
         $tplData['events'] = $this->db->getAllEvents();
         $tplData['photos'] = $this->db->getAllPhotos();
@@ -77,6 +78,29 @@ class HomeController implements IController
             if(isset($data['action']) && $data['action'] == 'signout') {
                 $this->db->userLogout();
                 echo json_encode(['success' => true]);
+                exit();
+            }
+        }
+
+        //dostan data o produktu z db
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            header('Content-Type: application/json');
+
+            $jsonData = file_get_contents('php://input');
+            $data = json_decode($jsonData, true);
+
+
+            if (isset($data['action']) && $data['action'] === 'get-paragraph') {
+
+
+                $paragraph = $this->db->getAbout(); // Metoda pro načtení produktu
+
+                //vrat data
+                if ($paragraph) {
+                    echo json_encode(['success' => true, 'data' => $paragraph]);
+                } else {
+                    echo json_encode(['success' => false, 'message' => 'Paragraph is not found.']);
+                }
                 exit();
             }
         }

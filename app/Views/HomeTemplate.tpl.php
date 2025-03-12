@@ -20,17 +20,80 @@ $tmp = new TemplateBasics();
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
           rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-    <link rel="stylesheet" href="../../../swarmwebsite/app/Views/styles/navbar.css">
-    <link rel="stylesheet" href="../../../swarmwebsite/app/Views/styles/timeline.css">
-    <link rel="stylesheet" href="../../../swarmwebsite/app/Views/styles/sponsors.css">
-    <link rel="stylesheet" href="../../../swarmwebsite/app/Views/styles/main-page.css">
+    <link rel="stylesheet" href="app/Views/styles/navbar.css">
+    <link rel="stylesheet" href="app/Views/styles/timeline.css">
+    <link rel="stylesheet" href="app/Views/styles/sponsors.css">
+    <link rel="stylesheet" href="app/Views/styles/main-page.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" rel="stylesheet">
 
 </head>
 
 <body id="page-top" data-bs-offset="54" style="background-color: black">
+<div class="modal fade" id="signInModal" tabindex="-1" aria-labelledby="signInModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="signInModalLabel">Admin</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="mb-3">
+                    <label for="email" class="form-label">Email</label>
+                    <input type="email" class="form-control" id="email" name="email" required>
+                </div>
+                <div class="mb-3">
+                    <label for="password" class="form-label">Password</label>
+                    <input type="password" class="form-control" id="password" name="password" required>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <!-- Prihlasit btn -->
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <input type="button" id="signin" class="btn btn-warning" value="Sign in">
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Edit paragraph Modal -->
+<div class="modal fade" id="editParagraphModal" tabindex="-1" aria-labelledby="editProductModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl modal-dialog-centered">
+        <div class="modal-content bg-dark text-light">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="editProductModalLabel">Paragraph editor</h1>
 
-<header>
+            </div>
+            <div class="container row g-3 mt-3 mb-3">
+                <!-- Popis produktu txt pole -->
+                <div class="col-12">
+                    <label for="productDescription" class="form-label">Paragraph 1</label>
+                    <label for="editParagraphDescription1"></label><textarea class="form-control bg-dark text-light" name="decription" id="editParagraphDescription1" rows="5"></textarea>
+                </div>
+                <!-- Fotka produktu upload -->
+                <div class="col-md-5">
+                    <label for="paragraphImage" class="form-label">Photo of Paragraph 1</label>
+                    <input type="file" class="form-control bg-dark text-light" name="fileToUpload1" id="editfileToUpload1">
+                </div>
+
+                <div class="col-12">
+                    <label for="productDescription" class="form-label">Paragraph 2</label>
+                    <label for="editParagraphDescription2"></label><textarea class="form-control bg-dark text-light" name="decription" id="editParagraphDescription2" rows="5"></textarea>
+                </div>
+                <!-- Fotka produktu upload -->
+                <div class="col-md-5">
+                    <label for="paragraphImage" class="form-label">Photo of Paragraph 2</label>
+                    <input type="file" class="form-control bg-dark text-light" name="fileToUpload2" id="editfileToUpload2">
+                </div>
+            </div>
+            <!-- Footer btns -->
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" id="saveParagraphsChanges" class="btn btn-warning" data-product-id="">Save</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--<header>-->
     <!-- Navbar -->
     <nav class="navbar navbar-expand-lg fixed-top navbar-scroll" id="mainNav" style="transition: background-color 1s ease;">
         <div class="container">
@@ -38,7 +101,7 @@ $tmp = new TemplateBasics();
                 <i class="fa fa-bars"></i>
             </button>
             <div class="collapse navbar-collapse" id="navbarResponsive">
-                <img src="../../../swarmwebsite/app/Views/images/Logo.png" style="width: auto;height: 10vh;" alt="">
+                <img src="app/Views/images/Logo.png" style="width: auto;height: 10vh;" alt="">
                 <ul class="navbar-nav ms-auto text-uppercase">
                     <li class="nav-item"><a class="nav-link custom-hover" style="font-size: 1.3rem" href="#about">About</a></li>
                     <li class="nav-item"><a class="nav-link custom-hover" style="font-size: 1.3rem" href="events.html">Events</a></li>
@@ -57,12 +120,12 @@ $tmp = new TemplateBasics();
 
     <!-- Section: Design Block -->
     <section>
-        <div  class="bg-image main-img" style="background-image: url('../../../swarmwebsite/app/Views/images/team_photo.JPG'); height: 100vh; background-size: cover; background-position: center top 75%; background-repeat: no-repeat">
+        <div  class="bg-image main-img" style="background-image: url('app/Views/images/team_photo.JPG'); height: 100vh; background-size: cover; background-position: center top 75%; background-repeat: no-repeat">
             <div class="container d-flex justify-content-start  align-items-center h-100">
                 <div class="row">
                     <div class="col-md-6 position-relative" style="position: absolute;">
                         <!-- ✅ Team Name Image (Moved Down 25%) -->
-                        <img src="../../../swarmwebsite/app/Views/images/team_name.png"
+                        <img src="app/Views/images/team_name.png"
                              style="width: 40vw; height: auto;"
                              alt="Team Name">
 
@@ -82,14 +145,20 @@ $tmp = new TemplateBasics();
         </div>
     </section>
     <!-- Section: Design Block -->
-</header>
+<!--</header>-->
 
 <!--<h1> working</h1>-->
 
-<?php var_dump($tplData['userlogged']);?>
+<?php error_reporting(E_ALL);
+ini_set('display_errors', 1);?>
 
 <section class="about m-lg-5">
-        <h1 class="text-warning container">About our team</h1>
+    <div class="container d-flex">
+        <h1 class="text-warning mb-0 me-2">About our team</h1>
+        <button id="edit-paragraphs-btn" name="edit-paragraphs-btn" class="btn btn-link text-warning fw-bold edit-paragraphs-btn" data-bs-toggle="modal" data-bs-target="#editParagraphModal">
+                <i class="bi-wrench" style="font-size: 1.5rem"></i>
+        </button>
+    </div>
         <section class="section-one m-lg-5">
             <div class="container">
                 <div class="row align-items-center">
@@ -119,18 +188,24 @@ $tmp = new TemplateBasics();
     <section>
         <div class="container py-5">
             <div class="main-timeline-2">
-                <?php foreach ($tplData['events'] as $index => $event): ?>
-                    <div class="timeline-2 <?= $index % 2 == 0 ? 'right-2' : 'left-2' ?>" data-aos="fade-up">
+                <?php foreach ($tplData['events'] as $index => $event){ ?>
+                    <div class="timeline-2 <?php echo $index % 2 == 0 ? 'right-2' : 'left-2' ;?>" data-aos="fade-up">
                         <div class="card"" style="background-color: black; border-color: #FFC328">
-                        <img src="<?php echo $event['photo'] ?>" class="card-img-top"
-                             alt="Responsive image">
-                        <div class="card-body p-4">
-                            <h4 class="fw-bold mb-4 text-warning"><?php echo $event['name'] ?></h4>
-                            <p class=" text-white mb-4"><i class="far fa-clock" aria-hidden="true"></i> <?php echo $event['date'] ?></p>
-                            <p class="mb-0 text-white"><?php echo $event['description'] ?></p>
+                            <img src="<?php echo $event['photo'] ?>" class="card-img-top"
+                                 alt="Responsive image">
+                            <div class="card-body p-4">
+                                <div class="container d-flex">
+                                    <h4 class="fw-bold mb-4 text-warning"><?php echo $event['name'] ?></h4>
+                                    <button id="edit-paragraphs-btn" name="edit-paragraphs-btn" class="btn btn-link text-warning fw-bold edit-paragraphs-btn" data-bs-toggle="modal" data-bs-target="#editParagraphModal">
+                                        <i class="bi-wrench" style="font-size: 1.1rem"></i>
+                                    </button>
+                                </div>
+                                <p class=" text-white mb-4"><i class="far fa-clock" aria-hidden="true"></i> <?php echo $event['date'] ?></p>
+                                <p class="mb-0 text-white"><?php echo $event['description'] ?></p>
+                            </div>
                         </div>
                     </div>
-                <?php endforeach; ?>
+                <?php } ?>
             </div>
         </div>
     </section>
@@ -193,31 +268,6 @@ $tmp = new TemplateBasics();
         </div>
     </section>
 
-    <div class="modal fade" id="signInModal" tabindex="-1" aria-labelledby="signInModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="signInModalLabel">Admin</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <div class="mb-3">
-                    <label for="email" class="form-label">Email</label>
-                    <input type="email" class="form-control" id="email" name="email" required>
-                </div>
-                <div class="mb-3">
-                    <label for="password" class="form-label">Password</label>
-                    <input type="password" class="form-control" id="password" name="password" required>
-                </div>
-            </div>
-            <div class="modal-footer">
-                <!-- Prihlasit btn -->
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <input type="button" id="signin" class="btn btn-warning" value="Sign in">
-            </div>
-        </div>
-    </div>
-</div>
 
     <footer class="mb-3">
         <div class="container">
@@ -240,9 +290,10 @@ $tmp = new TemplateBasics();
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="../../../swarmwebsite/app/JavaScript/navbar.js"></script>
+    <script src="app/JavaScript/navbar.js"></script>
     <script src="app/JavaScript/Admin.js"></script>
     <script src="app/JavaScript/Alert.js"></script>
+    <script src="app/JavaScript/Editor.js"></script>
 
     <script>
         AOS.init({
