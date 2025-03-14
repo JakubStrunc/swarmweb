@@ -87,7 +87,41 @@ $tmp = new TemplateBasics();
             <!-- Footer btns -->
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <button type="button" id="saveParagraphsChanges" class="btn btn-warning" data-product-id="">Save</button>
+                <button type="button" id="saveParagraphsChanges" class="btn btn-warning">Save</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="addEventModal" tabindex="-1" aria-labelledby="addEventModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl modal-dialog-centered">
+        <div class="modal-content bg-dark text-light">
+            <div class="modal-header">
+                <h5 class="modal-title" id="addEventModalLabel">Add New Event</h5>
+            </div>
+            <div class="modal-body">
+                <form id="addEventForm">
+                    <div class="mb-3">
+                        <label for="newEventName" class="form-label">Event Name</label>
+                        <input type="text" class="form-control" id="newEventName">
+                    </div>
+                    <div class="mb-3">
+                        <label for="newEventDescription" class="form-label">Event Description</label>
+                        <textarea class="form-control" id="newEventDescription"></textarea>
+                    </div>
+                    <div class="mb-3">
+                        <label for="newEventDate" class="form-label">Event Date</label>
+                        <input type="date" class="form-control" id="newEventDate">
+                    </div>
+                    <div class="mb-3">
+                        <label for="newEventPhoto" class="form-label">Event Photo</label>
+                        <input type="file" class="form-control bg-dark text-light" id="newEventPhoto">
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" id="saveNewEvent" class="btn btn-warning">Save New Event</button>
             </div>
         </div>
     </div>
@@ -116,6 +150,8 @@ $tmp = new TemplateBasics();
             </div>
         </div>
     </nav>
+
+
     <!-- Navbar -->
 
     <!-- Section: Design Block -->
@@ -146,7 +182,7 @@ $tmp = new TemplateBasics();
     </section>
     <!-- Section: Design Block -->
 <!--</header>-->
-
+<!---->
 <!--<h1> working</h1>-->
 
 <?php error_reporting(E_ALL);
@@ -186,6 +222,12 @@ ini_set('display_errors', 1);?>
         </section>
     </section>
     <section>
+        <div class="d-flex justify-content-center mb-4">
+            <button class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#addEventModal">
+                <i class=" bi-plus"></i>
+            </button>
+        </div>
+
         <div class="container py-5">
             <div class="main-timeline-2">
                 <?php foreach ($tplData['events'] as $index => $event){ ?>

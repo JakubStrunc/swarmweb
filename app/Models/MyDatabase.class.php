@@ -165,6 +165,8 @@ class MyDatabase {
     }
 
     public function updateAbout($id, $text, $photo) {
+
+        // Proceed with the update query, whether a new photo is provided or the old one is retained
         return $this->updateInTable("ABOUT", "text = '$text', photo = '$photo'", "id = $id");
     }
 

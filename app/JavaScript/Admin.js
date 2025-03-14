@@ -28,7 +28,7 @@ $(document).on('click', '#signin', function(event) {
                 //ulozime alert na domovskou stranku
                 sessionStorage.setItem("showAlert", "true");
                 sessionStorage.setItem("alertType", "success");
-                sessionStorage.setItem("alertMessage", "Přihlášení bylo úspěšné!");
+                sessionStorage.setItem("alertMessage", "You are signed in");
                 window.location.href = window.location.href;
 
             } else {

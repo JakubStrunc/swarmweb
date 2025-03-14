@@ -76,29 +76,89 @@ $(document).on('click', '#saveParagraphsChanges', function(event) {
                 //ulozime alert
                 sessionStorage.setItem("showAlert", "true");
                 sessionStorage.setItem("alertType", "success"); // Type of alert (success, warning, danger)
-                sessionStorage.setItem("alertMessage", "Produkt byl úspěšně upraven!"); // Alert message
+                sessionStorage.setItem("alertMessage", "Paragraphs were successfully updated!"); // Alert message
                 window.location.reload(); // Reload after success
             } else {
-                // zobrazime chybove zpravy
-                if (response.errors && response.errors.nazev) {
-                    $('#editproductName').after('<div class="text-danger">' + response.errors.nazev + '</div>');
+                if (response.errors && response.errors.paragraph1) {
+                    $('#editParagraphDescription1').after('<div class="text-danger">' + response.errors.paragraph1 + '</div>');
                 }
-                if (response.errors && response.errors.popis) {
-                    $('#editproductDescription').after('<div class="text-danger">' + response.errors.popis + '</div>');
+                if (response.errors && response.errors.paragraph2) {
+                    $('#editParagraphDescription2').after('<div class="text-danger">' + response.errors.paragraph2 + '</div>');
                 }
-                if (response.errors && response.errors.cena) {
-                    $('#editproductPrice').after('<div class="text-danger">' + response.errors.cena + '</div>');
+                if (response.errors && response.errors.fileToUpload1) {
+                    $('#editfileToUpload').after('<div class="text-danger">' + response.errors.fileToUpload1 + '</div>');
                 }
-                if (response.errors && response.errors.mnozstvi) {
-                    $('#editproductStock').after('<div class="text-danger">' + response.errors.mnozstvi + '</div>');
-                }
-                if (response.errors && response.errors.fileToUpload) {
-                    $('#editfileToUpload').after('<div class="text-danger">' + response.errors.fileToUpload + '</div>');
+                if (response.errors && response.errors.fileToUpload2) {
+                    $('#editfileToUpload2').after('<div class="text-danger">' + response.errors.fileToUpload2 + '</div>');
                 }
             }
         },
         error: function(xhr, status, error) {
             //chyba
+            console.error("Status:", status);
+            console.error("Error:", error);
+            console.error("Response Text:", xhr.responseText);
+        }
+    });
+});
+
+
+$(document).on('click', '#saveNewEvent', function(event) {
+    console.log("Starting new event addition...");
+    event.preventDefault();
+
+    // Remove any error messages
+    $('.text-danger').remove();
+
+    // Get current page URL
+    const page = window.location.href;
+
+    // Collect data from the modal form
+    const formData = new FormData();
+    formData.append('action', 'add-event');
+    formData.append('name', $('#newEventName').val());
+    formData.append('description', $('#newEventDescription').val());
+    formData.append('date', $('#newEventDate').val());
+    formData.append('photo', $('#newEventPhoto')[0].files[0]);
+
+    // AJAX request to add new event
+    $.ajax({
+        url: page,
+        type: 'POST',
+        data: formData,
+        processData: false,
+        contentType: false,
+        success: function(response) {
+            console.log(response);
+
+            // If the event was successfully added
+            if (response.success) {
+                // Store success alert data in sessionStorage
+                sessionStorage.setItem("showAlert", "true");
+                sessionStorage.setItem("alertType", "success");
+                sessionStorage.setItem("alertMessage", "Event was successfully added!");
+
+                // Close the modal and reload the page
+                $('#addEventModal').modal('hide');
+                window.location.reload();
+            } else {
+                // Display error messages
+                if (response.errors && response.errors.nazev) {
+                    $('#newEventName').after('<div class="text-danger">' + response.errors.nazev + '</div>');
+                }
+                if (response.errors && response.errors.popis) {
+                    $('#newEventDescription').after('<div class="text-danger">' + response.errors.popis + '</div>');
+                }
+                if (response.errors && response.errors.datum) {
+                    $('#newEventDate').after('<div class="text-danger">' + response.errors.datum + '</div>');
+                }
+                if (response.errors && response.errors.photo) {
+                    $('#newEventPhoto').after('<div class="text-danger">' + response.errors.photo + '</div>');
+                }
+            }
+        },
+        error: function(xhr, status, error) {
+            // Log any errors if the AJAX request fails
             console.error("Status:", status);
             console.error("Error:", error);
             console.error("Response Text:", xhr.responseText);
