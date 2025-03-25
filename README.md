@@ -24,7 +24,8 @@ To run the project locally using Docker:
    ```
    This should install 3 containers.
 
-3. **Run the container (should be automatic from step 2)**
+3. **Run the container (should be automatic from step 2):**
+   
     Run the package of containers in Docker app, and open the address for `swarmwebsite` container to view the website.
    
 ## License
